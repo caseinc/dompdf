@@ -43,6 +43,13 @@ class Table_Row_Group_Frame_Decorator extends Frame_Decorator {
 
     // Remove child & all subsequent rows from the cellmap
     $cellmap = $this->get_parent()->get_cellmap();
+
+    // ------------- my fix: (ydb1976@gmail.com)
+    while($child->get_node()->getAttribute("dontbreak")) {
+        $child = $child->get_prev_sibling();
+    }
+    // ------------- end of my fix
+    
     $iter = $child;
 
     while ( $iter ) {
